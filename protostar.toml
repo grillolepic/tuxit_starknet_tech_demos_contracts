@@ -1,0 +1,23 @@
+["protostar.config"]
+protostar_version = "0.4.2"
+
+["protostar.project"]
+libs_path = "lib"
+
+["protostar.contracts"]
+tuxit = [
+    "src/tuxit.cairo",
+]
+manualComplete = [
+    "src/manualComplete.cairo",
+]
+
+[profile.devnet.protostar.deploy]
+gateway-url="http://127.0.0.1:5050/"
+chain-id=1536727068981429685321
+
+[profile.testnet.protostar.deploy]
+network="alpha-goerli"
+
+[profile.mainnet.protostar.deploy]
+network="alpha-mainnet"

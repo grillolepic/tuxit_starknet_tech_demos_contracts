@@ -1,0 +1,349 @@
+[
+    {
+        "members": [
+            {
+                "name": "data",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "last_hash",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "signature",
+                "offset": 2,
+                "type": "(felt, felt)"
+            }
+        ],
+        "name": "PackedAction",
+        "size": 4,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "address",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "name",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "enabled",
+                "offset": 2,
+                "type": "felt"
+            }
+        ],
+        "name": "Game",
+        "size": 3,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "game_id",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "players",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "random_seed",
+                "offset": 2,
+                "type": "felt"
+            },
+            {
+                "name": "status",
+                "offset": 3,
+                "type": "felt"
+            },
+            {
+                "name": "winner",
+                "offset": 4,
+                "type": "felt"
+            },
+            {
+                "name": "join_deadline",
+                "offset": 5,
+                "type": "felt"
+            }
+        ],
+        "name": "GameRoom",
+        "size": 6,
+        "type": "struct"
+    },
+    {
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
+    },
+    {
+        "inputs": [
+            {
+                "name": "game_id",
+                "type": "felt"
+            },
+            {
+                "name": "players",
+                "type": "felt"
+            },
+            {
+                "name": "public_key",
+                "type": "felt"
+            },
+            {
+                "name": "time_to_expiry",
+                "type": "felt"
+            }
+        ],
+        "name": "createRoom",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "room_id",
+                "type": "felt"
+            },
+            {
+                "name": "public_key",
+                "type": "felt"
+            }
+        ],
+        "name": "joinRoom",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "room_id",
+                "type": "felt"
+            }
+        ],
+        "name": "closeRoomBeforeStart",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "room_id",
+                "type": "felt"
+            },
+            {
+                "name": "fixed_data_len",
+                "type": "felt"
+            },
+            {
+                "name": "fixed_data",
+                "type": "felt*"
+            },
+            {
+                "name": "fixed_signatures_len",
+                "type": "felt"
+            },
+            {
+                "name": "fixed_signatures",
+                "type": "(felt, felt)*"
+            },
+            {
+                "name": "checkpoint_data_len",
+                "type": "felt"
+            },
+            {
+                "name": "checkpoint_data",
+                "type": "felt*"
+            },
+            {
+                "name": "checkpoint_signatures_len",
+                "type": "felt"
+            },
+            {
+                "name": "checkpoint_signatures",
+                "type": "(felt, felt)*"
+            },
+            {
+                "name": "actions_len",
+                "type": "felt"
+            },
+            {
+                "name": "actions",
+                "type": "PackedAction*"
+            }
+        ],
+        "name": "verifyFinishedGameRoom",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "game",
+                "type": "Game"
+            }
+        ],
+        "name": "addGame",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "game_id",
+                "type": "felt"
+            },
+            {
+                "name": "game",
+                "type": "Game"
+            }
+        ],
+        "name": "updateGame",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "game_id",
+                "type": "felt"
+            }
+        ],
+        "name": "getGame",
+        "outputs": [
+            {
+                "name": "game",
+                "type": "Game"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "player",
+                "type": "felt"
+            }
+        ],
+        "name": "getPlayerCurrentRoom",
+        "outputs": [
+            {
+                "name": "room_id",
+                "type": "felt"
+            },
+            {
+                "name": "game_room",
+                "type": "GameRoom"
+            },
+            {
+                "name": "game",
+                "type": "Game"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getTotalRooms",
+        "outputs": [
+            {
+                "name": "total",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "room_id",
+                "type": "felt"
+            }
+        ],
+        "name": "getGameRoom",
+        "outputs": [
+            {
+                "name": "room",
+                "type": "GameRoom"
+            },
+            {
+                "name": "game",
+                "type": "Game"
+            },
+            {
+                "name": "player_addresses_len",
+                "type": "felt"
+            },
+            {
+                "name": "player_addresses",
+                "type": "felt*"
+            },
+            {
+                "name": "public_keys_len",
+                "type": "felt"
+            },
+            {
+                "name": "public_keys",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "player",
+                "type": "felt"
+            }
+        ],
+        "name": "getPlayerTotalRooms",
+        "outputs": [
+            {
+                "name": "total",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "player",
+                "type": "felt"
+            },
+            {
+                "name": "index",
+                "type": "felt"
+            }
+        ],
+        "name": "getPlayerGameRoomByIndex",
+        "outputs": [
+            {
+                "name": "room_id",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]

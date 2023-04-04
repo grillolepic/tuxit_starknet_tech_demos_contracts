@@ -1,0 +1,455 @@
+[
+    {
+        "members": [
+            {
+                "name": "x",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "y",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "orientation",
+                "offset": 2,
+                "type": "felt"
+            },
+            {
+                "name": "hit",
+                "offset": 3,
+                "type": "felt"
+            },
+            {
+                "name": "apples",
+                "offset": 4,
+                "type": "felt"
+            },
+            {
+                "name": "oranges",
+                "offset": 5,
+                "type": "felt"
+            },
+            {
+                "name": "pears",
+                "offset": 6,
+                "type": "felt"
+            }
+        ],
+        "name": "Player",
+        "size": 7,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "id",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "x",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "y",
+                "offset": 2,
+                "type": "felt"
+            },
+            {
+                "name": "type",
+                "offset": 3,
+                "type": "felt"
+            },
+            {
+                "name": "direction",
+                "offset": 4,
+                "type": "felt"
+            }
+        ],
+        "name": "Shot",
+        "size": 5,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "data",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "last_hash",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "signature",
+                "offset": 2,
+                "type": "(felt, felt)"
+            }
+        ],
+        "name": "PackedAction",
+        "size": 4,
+        "type": "struct"
+    },
+    {
+        "inputs": [
+            {
+                "name": "fixed_data_len",
+                "type": "felt"
+            },
+            {
+                "name": "fixed_data",
+                "type": "felt*"
+            },
+            {
+                "name": "public_keys_len",
+                "type": "felt"
+            },
+            {
+                "name": "public_keys",
+                "type": "felt*"
+            },
+            {
+                "name": "signatures_len",
+                "type": "felt"
+            },
+            {
+                "name": "signatures",
+                "type": "(felt, felt)*"
+            }
+        ],
+        "name": "load_and_verify_fixed_state",
+        "outputs": [
+            {
+                "name": "grid_width",
+                "type": "felt"
+            },
+            {
+                "name": "grid_area",
+                "type": "felt"
+            },
+            {
+                "name": "map_len",
+                "type": "felt"
+            },
+            {
+                "name": "map",
+                "type": "felt*"
+            },
+            {
+                "name": "total_players",
+                "type": "felt"
+            },
+            {
+                "name": "player_indices_len",
+                "type": "felt"
+            },
+            {
+                "name": "player_indices",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "checkpoint_data_len",
+                "type": "felt"
+            },
+            {
+                "name": "checkpoint_data",
+                "type": "felt*"
+            },
+            {
+                "name": "public_keys_len",
+                "type": "felt"
+            },
+            {
+                "name": "public_keys",
+                "type": "felt*"
+            },
+            {
+                "name": "signatures_len",
+                "type": "felt"
+            },
+            {
+                "name": "signatures",
+                "type": "(felt, felt)*"
+            }
+        ],
+        "name": "load_and_verify_checkpoint",
+        "outputs": [
+            {
+                "name": "turn",
+                "type": "felt"
+            },
+            {
+                "name": "last_shot",
+                "type": "felt"
+            },
+            {
+                "name": "finished",
+                "type": "felt"
+            },
+            {
+                "name": "winner",
+                "type": "felt"
+            },
+            {
+                "name": "players_len",
+                "type": "felt"
+            },
+            {
+                "name": "players",
+                "type": "Player*"
+            },
+            {
+                "name": "shots_len",
+                "type": "felt"
+            },
+            {
+                "name": "shots",
+                "type": "Shot*"
+            },
+            {
+                "name": "last_action_hash",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "action",
+                "type": "PackedAction"
+            },
+            {
+                "name": "public_keys_len",
+                "type": "felt"
+            },
+            {
+                "name": "public_keys",
+                "type": "felt*"
+            }
+        ],
+        "name": "load_and_verify_action",
+        "outputs": [
+            {
+                "name": "turn",
+                "type": "felt"
+            },
+            {
+                "name": "player_number",
+                "type": "felt"
+            },
+            {
+                "name": "key_code",
+                "type": "felt"
+            },
+            {
+                "name": "hash",
+                "type": "felt"
+            },
+            {
+                "name": "last_hash",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "public_keys_len",
+                "type": "felt"
+            },
+            {
+                "name": "public_keys",
+                "type": "felt*"
+            },
+            {
+                "name": "fixed_data_len",
+                "type": "felt"
+            },
+            {
+                "name": "fixed_data",
+                "type": "felt*"
+            },
+            {
+                "name": "fixed_signatures_len",
+                "type": "felt"
+            },
+            {
+                "name": "fixed_signatures",
+                "type": "(felt, felt)*"
+            },
+            {
+                "name": "checkpoint_data_len",
+                "type": "felt"
+            },
+            {
+                "name": "checkpoint_data",
+                "type": "felt*"
+            },
+            {
+                "name": "checkpoint_signatures_len",
+                "type": "felt"
+            },
+            {
+                "name": "checkpoint_signatures",
+                "type": "(felt, felt)*"
+            },
+            {
+                "name": "actions_len",
+                "type": "felt"
+            },
+            {
+                "name": "actions",
+                "type": "PackedAction*"
+            }
+        ],
+        "name": "is_game_finished",
+        "outputs": [
+            {
+                "name": "finished",
+                "type": "felt"
+            },
+            {
+                "name": "winner",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "public_keys_len",
+                "type": "felt"
+            },
+            {
+                "name": "public_keys",
+                "type": "felt*"
+            },
+            {
+                "name": "grid_width",
+                "type": "felt"
+            },
+            {
+                "name": "map_len",
+                "type": "felt"
+            },
+            {
+                "name": "map",
+                "type": "felt*"
+            },
+            {
+                "name": "player_indices_len",
+                "type": "felt"
+            },
+            {
+                "name": "player_indices",
+                "type": "felt*"
+            },
+            {
+                "name": "turn",
+                "type": "felt"
+            },
+            {
+                "name": "last_shot",
+                "type": "felt"
+            },
+            {
+                "name": "finished",
+                "type": "felt"
+            },
+            {
+                "name": "winner",
+                "type": "felt"
+            },
+            {
+                "name": "players_len",
+                "type": "felt"
+            },
+            {
+                "name": "players",
+                "type": "Player*"
+            },
+            {
+                "name": "shots_len",
+                "type": "felt"
+            },
+            {
+                "name": "shots",
+                "type": "Shot*"
+            },
+            {
+                "name": "last_action_hash",
+                "type": "felt"
+            },
+            {
+                "name": "actions_len",
+                "type": "felt"
+            },
+            {
+                "name": "actions",
+                "type": "PackedAction*"
+            },
+            {
+                "name": "index",
+                "type": "felt"
+            }
+        ],
+        "name": "process_action_array",
+        "outputs": [
+            {
+                "name": "turn",
+                "type": "felt"
+            },
+            {
+                "name": "last_shot",
+                "type": "felt"
+            },
+            {
+                "name": "finished",
+                "type": "felt"
+            },
+            {
+                "name": "winner",
+                "type": "felt"
+            },
+            {
+                "name": "players_len",
+                "type": "felt"
+            },
+            {
+                "name": "players",
+                "type": "Player*"
+            },
+            {
+                "name": "shots_len",
+                "type": "felt"
+            },
+            {
+                "name": "shots",
+                "type": "Shot*"
+            },
+            {
+                "name": "last_action_hash",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
